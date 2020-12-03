@@ -1,28 +1,31 @@
 import React from 'react';
-
 import onlineIcon from '../../icons/onlineIcon.png';
-
-import './textContainer.css';
+import {
+  ActiveContainer,
+  ActiveIcon,
+  ActiveItem,
+  Heading,
+  TextWrapper,
+} from './TextContainerElements';
 
 const TextContainer = ({ users }) => (
-  <div className="textContainer">
-    {console.log(users)}
+  <TextWrapper>
     {users ? (
-      <div>
-        <h1>People currently chatting:</h1>
-        <div className="activeContainer">
+      <>
+        <Heading>People currently chatting:</Heading>
+        <ActiveContainer>
           <h2>
             {users.map(({ name }, i) => (
-              <div key={i} className="activeItem">
+              <ActiveItem key={i}>
                 {name}
-                <img alt="Online Icon" src={onlineIcon} />
-              </div>
+                <ActiveIcon alt="Online" src={onlineIcon} />
+              </ActiveItem>
             ))}
           </h2>
-        </div>
-      </div>
+        </ActiveContainer>
+      </>
     ) : null}
-  </div>
+  </TextWrapper>
 );
 
 export default TextContainer;
