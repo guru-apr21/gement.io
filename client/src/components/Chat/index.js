@@ -30,11 +30,9 @@ const Chat = ({ location }) => {
 
   useEffect(() => {
     socket.on('message', (message) => {
-      setMessages([...messages, message]);
+      setMessages((messages) => setMessages([...messages, message]));
     });
-  }, [messages]);
-
-  console.log(messages);
+  }, []);
 
   return (
     <div className="outerContainer">
