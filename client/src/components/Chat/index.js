@@ -47,7 +47,6 @@ const Chat = ({ location }) => {
     <div className="outerContainer">
       <div className="container">
         <InfoBar room={room} />
-
         <Input socket={socket} />
       </div>
     </div>
