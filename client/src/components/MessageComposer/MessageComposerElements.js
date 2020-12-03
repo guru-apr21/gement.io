@@ -21,7 +21,7 @@ export const MessageComposerButton = styled.button`
   color: #fff !important;
   text-transform: uppercase;
   text-decoration: none;
-  background: #2979ff;
+  background: #9b59b6;
   padding: 20px;
   display: inline-block;
   border: none;

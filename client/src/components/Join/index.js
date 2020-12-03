@@ -15,7 +15,7 @@ const Join = () => {
   return (
     <JoinOuterContainer>
       <JoinInnerContainer>
-        <Heading>Join</Heading>
+        <Heading>Join Room</Heading>
         <Input
           placeholder="Name"
           type="text"

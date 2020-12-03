@@ -19,7 +19,7 @@ const Message = ({ message: { user, text }, name }) => {
       <MessageSentBy $style={{ 'padding-right': '10px' }}>
         {trimmedName}
       </MessageSentBy>
-      <MessageBox $style={{ background: '#2979ff' }}>
+      <MessageBox $style={{ background: '#9b59b6' }}>
         <MessageText $style={{ color: 'white' }}>
           {ReactEmoji.emojify(text)}
         </MessageText>
