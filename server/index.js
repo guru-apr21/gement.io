@@ -1,6 +1,7 @@
 const express = require('express');
 const socketio = require('socket.io');
 const http = require('http');
+const cors = require('cors');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
@@ -16,6 +17,9 @@ const io = socketio(server, {
     methods: ['GET', 'POST'],
   },
 });
+
+app.use(router);
+app.use(cors());
 
 io.on('connection', (socket) => {
   console.log('New user connected!!');
@@ -65,7 +69,5 @@ io.on('connection', (socket) => {
     });
   });
 });
-
-app.use(router);
 
 server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
