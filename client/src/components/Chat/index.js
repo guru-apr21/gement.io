@@ -4,6 +4,7 @@ import Input from '../Input';
 import queryString from 'query-string';
 import io from 'socket.io-client';
 import './chat.css';
+import Messages from '../Messages';
 
 let socket;
 const Chat = ({ location }) => {
@@ -33,20 +34,13 @@ const Chat = ({ location }) => {
     });
   }, [messages]);
 
-  const sendMessage = (e) => {
-    e.preventDefault();
-    const message = e.target.value;
-    if (message) {
-      socket.emit('sendMessage', message, () => (e.target.value = ''));
-    }
-  };
-
   console.log(messages);
 
   return (
     <div className="outerContainer">
       <div className="container">
         <InfoBar room={room} />
+        <Messages messages={messages} name={name} />
         <Input socket={socket} />
       </div>
     </div>
