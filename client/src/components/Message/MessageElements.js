@@ -36,4 +36,5 @@ export const MessageSentBy = styled.p`
   color: #828282;
   letter-spacing: 0.3px;
   padding-left: 10px;
+  ${({ $style }) => $style ?? {}}
 `;
