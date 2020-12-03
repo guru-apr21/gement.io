@@ -47,11 +47,8 @@ const Chat = ({ location }) => {
     <div className="outerContainer">
       <div className="container">
         <InfoBar room={room} />
-        <Input />
-        {/* <input
-          type="text"
-          onKeyPress={(e) => (e.key === 'Enter' ? sendMessage(e) : null)}
-        /> */}
+
+        <Input socket={socket} />
       </div>
     </div>
   );
