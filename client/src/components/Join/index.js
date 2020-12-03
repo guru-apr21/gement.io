@@ -1,47 +1,46 @@
 import React, { useState } from 'react';
-import './join.css';
 import { Link } from 'react-router-dom';
+import {
+  JoinOuterContainer,
+  JoinInnerContainer,
+  Heading,
+  Input,
+  Button,
+} from './JoinElements';
 
 const Join = () => {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
 
   return (
-    <div className="joinOuterContainer">
-      <div className="joinInnerContainer">
-        <h1 className="heading">Join</h1>
-        <div>
-          <input
-            placeholder="Name"
-            type="text"
-            className="joinInput"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <input
-            placeholder="Room"
-            type="text"
-            className="joinInput mt-20"
-            value={room}
-            onChange={(e) => {
-              setRoom(e.target.value);
-            }}
-          />
-        </div>
+    <JoinOuterContainer>
+      <JoinInnerContainer>
+        <Heading>Join</Heading>
+        <Input
+          placeholder="Name"
+          type="text"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+        <Input
+          $style={{ 'margin-top': '20px' }}
+          placeholder="Room"
+          type="text"
+          value={room}
+          onChange={(e) => {
+            setRoom(e.target.value);
+          }}
+        />
         <Link
           onClick={(e) => (!name || !room ? e.preventDefault() : null)}
           to={`/chat?name=${name}&room=${room}`}
         >
-          <button className="button mt-20" type="submit">
-            Sign In
-          </button>
+          <Button type="submit">Sign In</Button>
         </Link>
-      </div>
-    </div>
+      </JoinInnerContainer>
+    </JoinOuterContainer>
   );
 };
 
