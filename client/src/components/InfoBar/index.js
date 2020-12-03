@@ -2,21 +2,26 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import closeIcon from '../../icons/closeIcon.png';
 import onlineIcon from '../../icons/onlineIcon.png';
-import './infoBar.css';
+import {
+  InfoBarLeftContainer,
+  InfoBarRightContainer,
+  InfoBarWrapper,
+  Image,
+} from './InfoBarElements';
 
 const InfoBar = ({ room }) => {
   return (
-    <div className="infoBar">
-      <div className="leftInnerContainer">
-        <img src={onlineIcon} alt=" " className="onlineIcon" />
+    <InfoBarWrapper>
+      <InfoBarLeftContainer>
+        <Image src={onlineIcon} alt=" " />
         <h3>{room}</h3>
-      </div>
-      <div className="rightInnerContainer">
+      </InfoBarLeftContainer>
+      <InfoBarRightContainer>
         <Link to="/">
           <img src={closeIcon} alt=" " />
         </Link>
-      </div>
-    </div>
+      </InfoBarRightContainer>
+    </InfoBarWrapper>
   );
 };
 
