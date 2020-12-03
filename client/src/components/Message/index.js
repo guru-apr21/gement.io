@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactEmoji from 'react-emoji';
-import './message.css';
+import {
+  MessageContainer,
+  MessageBox,
+  MessageText,
+  MessageSentBy,
+} from './MessageElements';
 
 const Message = ({ message: { user, text }, name }) => {
   let isSentByCurrentUser = false;
@@ -10,19 +15,23 @@ const Message = ({ message: { user, text }, name }) => {
     isSentByCurrentUser = true;
   }
   return isSentByCurrentUser ? (
-    <div className="messageContainer justifyEnd">
-      <p className="sentText pr-10">{trimmedName}</p>
-      <div className="messageBox backgroundBlue">
-        <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
-      </div>
-    </div>
+    <MessageContainer $style={{ 'justify-content': 'flex-end' }}>
+      <MessageSentBy $style={{ 'padding-right': '10px' }}>
+        {trimmedName}
+      </MessageSentBy>
+      <MessageBox $style={{ background: '#2979ff' }}>
+        <MessageText $style={{ color: 'white' }}>
+          {ReactEmoji.emojify(text)}
+        </MessageText>
+      </MessageBox>
+    </MessageContainer>
   ) : (
-    <div className="messageContainer justifyStart">
-      <div className="messageBox backgroundLight">
-        <p className="messageText colorDark">{ReactEmoji.emojify(text)}</p>
-      </div>
-      <p className="sentText pl-10">{user}</p>
-    </div>
+    <MessageContainer>
+      <MessageBox>
+        <MessageText>{ReactEmoji.emojify(text)}</MessageText>
+      </MessageBox>
+      <MessageSentBy>{user}</MessageSentBy>
+    </MessageContainer>
   );
 };
 
