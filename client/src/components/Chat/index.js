@@ -3,9 +3,10 @@ import InfoBar from '../InfoBar';
 import Input from '../Input';
 import queryString from 'query-string';
 import io from 'socket.io-client';
-import './chat.css';
 import Messages from '../Messages';
 import TextContainer from '../TextContainer/index';
+
+import { ChatOuterContainer, ChatInnerContainer } from './ChatElements';
 
 let socket;
 const Chat = ({ location }) => {
@@ -39,14 +40,14 @@ const Chat = ({ location }) => {
   }, []);
 
   return (
-    <div className="outerContainer">
-      <div className="container">
+    <ChatOuterContainer>
+      <ChatInnerContainer>
         <InfoBar room={room} />
         <Messages messages={messages} name={name} />
         <Input socket={socket} />
-      </div>
+      </ChatInnerContainer>
       <TextContainer users={users} />
-    </div>
+    </ChatOuterContainer>
   );
 };
 
