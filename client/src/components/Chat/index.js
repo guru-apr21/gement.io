@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import InfoBar from '../InfoBar';
-import Input from '../MessageComposer';
+import MessageComposer from '../MessageComposer';
 import queryString from 'query-string';
 import io from 'socket.io-client';
 import Messages from '../Messages';
@@ -44,7 +44,7 @@ const Chat = ({ location }) => {
       <ChatInnerContainer>
         <InfoBar room={room} />
         <Messages messages={messages} name={name} />
-        <Input socket={socket} />
+        <MessageComposer socket={socket} />
       </ChatInnerContainer>
       <TextContainer users={users} />
     </ChatOuterContainer>
