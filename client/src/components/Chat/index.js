@@ -5,12 +5,14 @@ import queryString from 'query-string';
 import io from 'socket.io-client';
 import './chat.css';
 import Messages from '../Messages';
+import TextContainer from '../TextContainer/index';
 
 let socket;
 const Chat = ({ location }) => {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [messages, setMessages] = useState([]);
+  const [users, setUsers] = useState([]);
   const ENDPOINT = 'localhost:5000';
 
   useEffect(() => {
@@ -32,6 +34,8 @@ const Chat = ({ location }) => {
     socket.on('message', (message) => {
       setMessages((messages) => setMessages([...messages, message]));
     });
+
+    socket.on('roomData', ({ users }) => setUsers(users));
   }, []);
 
   return (
@@ -41,6 +45,7 @@ const Chat = ({ location }) => {
         <Messages messages={messages} name={name} />
         <Input socket={socket} />
       </div>
+      <TextContainer users={users} />
     </div>
   );
 };
