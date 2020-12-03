@@ -1,7 +1,11 @@
 import React, { useRef } from 'react';
-import './input.css';
+import {
+  MessageComposerForm,
+  MessageComposerInput,
+  MessageComposerButton,
+} from './MessageComposerElements';
 
-const Input = ({ socket }) => {
+const MessageComposer = ({ socket }) => {
   const inputRef = useRef();
   const sendMessage = (e) => {
     e.preventDefault();
@@ -12,19 +16,16 @@ const Input = ({ socket }) => {
   };
 
   return (
-    <form className="form">
-      <input
+    <MessageComposerForm>
+      <MessageComposerInput
         ref={inputRef}
-        className="input"
         type="text"
         placeholder="Type a message..."
         onKeyPress={(e) => (e.key === 'Enter' ? sendMessage(e) : null)}
       />
-      <button className="sendButton" onClick={sendMessage}>
-        Send
-      </button>
-    </form>
+      <MessageComposerButton onClick={sendMessage}>Send</MessageComposerButton>
+    </MessageComposerForm>
   );
 };
 
-export default Input;
+export default MessageComposer;
