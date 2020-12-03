@@ -18,6 +18,7 @@ const io = socketio(server, {
 });
 
 io.on('connection', (socket) => {
+  console.log('New user connected!!');
   socket.on('join', ({ name, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, room });
 
@@ -46,7 +47,13 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    console.log('User had left');
+    const user = removeUser(socket.id);
+    console.log(`${user.name} left`);
+    if (user)
+      io.to(user.room).emit('message', {
+        user: 'admin',
+        text: `${user.name} has left the chat.`,
+      });
   });
 });
 
