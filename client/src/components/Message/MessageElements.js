@@ -31,10 +31,15 @@ export const MessageText = styled.p`
 
 export const MessageSentBy = styled.p`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   font-family: Helvetica;
   color: #828282;
   letter-spacing: 0.3px;
   padding-left: 10px;
   ${({ $style }) => $style ?? {}}
+`;
+
+export const MessageSentAt = styled.span`
+  font-size: 0.6em;
+  font-weight: bolder;
 `;
