@@ -5,9 +5,10 @@ import {
   MessageBox,
   MessageText,
   MessageSentBy,
+  MessageSentAt,
 } from './MessageElements';
 
-const Message = ({ message: { user, text }, name }) => {
+const Message = ({ message: { user, text, time }, name }) => {
   let isSentByCurrentUser = false;
   const trimmedName = name.trim().toLowerCase();
 
@@ -17,6 +18,7 @@ const Message = ({ message: { user, text }, name }) => {
   return isSentByCurrentUser ? (
     <MessageContainer $style={{ 'justify-content': 'flex-end' }}>
       <MessageSentBy $style={{ 'padding-right': '10px' }}>
+        <MessageSentAt>{time}</MessageSentAt>
         {trimmedName}
       </MessageSentBy>
       <MessageBox $style={{ background: '#9b59b6' }}>
@@ -30,7 +32,12 @@ const Message = ({ message: { user, text }, name }) => {
       <MessageBox>
         <MessageText>{ReactEmoji.emojify(text)}</MessageText>
       </MessageBox>
-      <MessageSentBy>{user}</MessageSentBy>
+      <MessageSentBy>
+        <MessageSentAt style={{ fontSize: '0.6em', fontWeight: 'bolder' }}>
+          {time}
+        </MessageSentAt>
+        {user}
+      </MessageSentBy>
     </MessageContainer>
   );
 };
