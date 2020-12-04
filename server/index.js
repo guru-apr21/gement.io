@@ -2,6 +2,7 @@ const express = require('express');
 const socketio = require('socket.io');
 const http = require('http');
 const cors = require('cors');
+const moment = require('moment');
 const { ORIGIN_URI } = require('./config');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
@@ -32,6 +33,7 @@ io.on('connection', (socket) => {
     socket.emit('message', {
       user: 'admin',
       text: `${user.name}, welcome to the ${user.room}`,
+      time: moment().format('h:mm a'),
     });
 
     socket.broadcast
@@ -51,7 +53,11 @@ io.on('connection', (socket) => {
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id);
 
-    io.to(user.room).emit('message', { user: user.name, text: message });
+    io.to(user.room).emit('message', {
+      user: user.name,
+      text: message,
+      time: moment().format('h:mm a'),
+    });
 
     callback();
   });
