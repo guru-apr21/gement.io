@@ -6,7 +6,7 @@ export const TextWrapper = styled.div`
   margin-left: 100px;
   color: white;
   height: 60%;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 
   @media (min-width: 320px) and (max-width: 1200px) {
     display: none;
