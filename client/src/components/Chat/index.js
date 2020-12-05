@@ -9,11 +9,14 @@ import SERVER_URI from '../../utils/config';
 import { ChatOuterContainer, ChatInnerContainer } from './ChatElements';
 
 let socket;
+let timeOutId;
+
 const Chat = ({ location }) => {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
+  const [isTyping, setIsTyping] = useState({});
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -36,12 +39,18 @@ const Chat = ({ location }) => {
     });
 
     socket.on('roomData', ({ users }) => setUsers(users));
+
+    socket.on('isTyping', (data) => {
+      setIsTyping(data);
+      if (timeOutId) clearInterval(timeOutId);
+      timeOutId = setTimeout(() => setIsTyping(''), 1000);
+    });
   }, []);
 
   return (
     <ChatOuterContainer>
       <ChatInnerContainer>
-        <InfoBar room={room} />
+        <InfoBar room={room} isTyping={isTyping} name={name} />
         <Messages messages={messages} name={name} />
         <MessageComposer socket={socket} />
       </ChatInnerContainer>
