@@ -5,7 +5,7 @@ import queryString from 'query-string';
 import io from 'socket.io-client';
 import Messages from '../Messages';
 import TextContainer from '../TextContainer/index';
-
+import SERVER_URI from '../../utils/config';
 import { ChatOuterContainer, ChatInnerContainer } from './ChatElements';
 
 let socket;
@@ -14,12 +14,11 @@ const Chat = ({ location }) => {
   const [room, setRoom] = useState('');
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
-  const ENDPOINT = 'localhost:5000';
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
 
-    socket = io(ENDPOINT);
+    socket = io(SERVER_URI);
 
     setName(name);
     setRoom(room);
@@ -29,7 +28,7 @@ const Chat = ({ location }) => {
     return () => {
       socket.disconnect();
     };
-  }, [location.search, ENDPOINT]);
+  }, [location.search]);
 
   useEffect(() => {
     socket.on('message', (message) => {
