@@ -21,7 +21,9 @@ const MessageComposer = ({ socket }) => {
         ref={inputRef}
         type="text"
         placeholder="Type a message..."
-        onKeyPress={(e) => (e.key === 'Enter' ? sendMessage(e) : null)}
+        onKeyPress={(e) =>
+          e.key === 'Enter' ? sendMessage(e) : socket.emit('typing')
+        }
       />
       <MessageComposerButton onClick={sendMessage}>Send</MessageComposerButton>
     </MessageComposerForm>
