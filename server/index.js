@@ -1,27 +1,33 @@
+const path = require('path');
 const express = require('express');
 const socketio = require('socket.io');
 const http = require('http');
 const cors = require('cors');
 const moment = require('moment');
-const { ORIGIN_URI } = require('./config');
+const getCorsOption = require('./utils/config');
 
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
+const {
+  addUser,
+  removeUser,
+  getUser,
+  getUsersInRoom,
+} = require('./utils/users');
 
 const PORT = process.env.PORT || 5000;
 
-const router = require('./router');
-
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server, {
-  cors: {
-    origin: ORIGIN_URI,
-    methods: ['GET', 'POST'],
-  },
-});
 
-app.use(router);
+// Development environment returns a cors object with origin key
+// set to localhost url
+const io = socketio(server, getCorsOption());
+
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 io.on('connection', (socket) => {
   console.log('New user connected!!');
