@@ -68,6 +68,14 @@ io.on('connection', (socket) => {
     callback();
   });
 
+  socket.on('typing', () => {
+    const user = getUser(socket.id);
+    io.to(user.room).emit('isTyping', {
+      user: user.name,
+      text: `${user.name} is typing...`,
+    });
+  });
+
   socket.on('disconnect', () => {
     const user = removeUser(socket.id);
     console.log(`${user.name} left`);
