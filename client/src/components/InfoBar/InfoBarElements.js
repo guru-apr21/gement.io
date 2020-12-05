@@ -12,7 +12,7 @@ export const InfoBarWrapper = styled.div`
 
 export const InfoBarLeftContainer = styled.div`
   display: flex;
-  flex: 0.5;
+  flex: 0.8;
   align-items: center;
   margin-left: 5%;
   color: white;
@@ -20,11 +20,15 @@ export const InfoBarLeftContainer = styled.div`
 
 export const InfoBarRightContainer = styled.div`
   display: flex;
-  flex: 0.5;
+  flex: 0.2;
   justify-content: flex-end;
   margin-right: 5%;
 `;
 
 export const Image = styled.img`
   margin-right: 5%;
+`;
+
+export const IsTyping = styled.span`
+  margin-left: 3%;
 `;
