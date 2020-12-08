@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import closeIcon from '../../icons/closeIcon.png';
 import onlineIcon from '../../icons/onlineIcon.png';
 import {
@@ -11,6 +11,7 @@ import {
 } from './InfoBarElements';
 
 const InfoBar = ({ room, isTyping: { user, text }, name }) => {
+  const history = useHistory();
   let isSentByCurrentUser = true;
   const trimmedName = name.trim().toLowerCase();
 
@@ -26,9 +27,7 @@ const InfoBar = ({ room, isTyping: { user, text }, name }) => {
         {isSentByCurrentUser && <IsTyping>{text}</IsTyping>}
       </InfoBarLeftContainer>
       <InfoBarRightContainer>
-        <Link to="/">
-          <img src={closeIcon} alt=" " />
-        </Link>
+        <img src={closeIcon} alt=" " onClick={() => history.replace('/')} />
       </InfoBarRightContainer>
     </InfoBarWrapper>
   );
