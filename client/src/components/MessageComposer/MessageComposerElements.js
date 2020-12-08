@@ -8,8 +8,8 @@ export const MessageComposerForm = styled.form`
 export const MessageComposerInput = styled.input`
   border: none;
   border-radius: 0;
-  padding: 5%;
-  width: 80%;
+  padding: 2.5%;
+  width: 83%;
   font-size: 1.2em;
 
   &:focus {
@@ -25,5 +25,5 @@ export const MessageComposerButton = styled.button`
   padding: 20px;
   display: inline-block;
   border: none;
-  width: 20%;
+  width: 17%;
 `;
