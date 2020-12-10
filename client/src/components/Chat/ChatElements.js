@@ -19,7 +19,7 @@ export const ChatInnerContainer = styled.div`
   background: #ffffff;
   border-radius: 8px;
   height: 80%;
-  width: 55%;
+  width: 75%;
 
   @media (min-width: 320px) and (max-width: 480px) {
     width: 100%;
