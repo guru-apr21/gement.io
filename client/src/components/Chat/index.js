@@ -49,12 +49,12 @@ const Chat = ({ location }) => {
 
   return (
     <ChatOuterContainer>
+      <TextContainer users={users} />
       <ChatInnerContainer>
         <InfoBar room={room} isTyping={isTyping} name={name} />
         <Messages messages={messages} name={name} />
         <MessageComposer socket={socket} />
       </ChatInnerContainer>
-      <TextContainer users={users} />
     </ChatOuterContainer>
   );
 };

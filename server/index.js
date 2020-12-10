@@ -5,6 +5,7 @@ const http = require('http');
 const cors = require('cors');
 const moment = require('moment');
 const getCorsOption = require('./utils/config');
+const userRouter = require('./routes/users');
 
 const {
   addUser,
@@ -23,14 +24,15 @@ const server = http.createServer(app);
 const io = socketio(server, getCorsOption());
 
 app.use(cors());
+app.use(express.json());
 app.use(express.static(path.join(__dirname, 'build')));
+app.use('/api', userRouter);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 io.on('connection', (socket) => {
-  console.log('New user connected!!');
   socket.on('join', ({ name, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, room });
 

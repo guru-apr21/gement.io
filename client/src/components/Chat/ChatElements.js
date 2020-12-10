@@ -18,8 +18,8 @@ export const ChatInnerContainer = styled.div`
   justify-content: space-between;
   background: #ffffff;
   border-radius: 8px;
-  height: 60%;
-  width: 35%;
+  height: 80%;
+  width: 75%;
 
   @media (min-width: 320px) and (max-width: 480px) {
     width: 100%;

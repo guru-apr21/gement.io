@@ -12,7 +12,7 @@ const TextContainer = ({ users }) => (
   <TextWrapper>
     {users ? (
       <>
-        <Heading>People currently chatting:</Heading>
+        <Heading>Online users:</Heading>
         <ActiveContainer>
           <h2>
             {users.map(({ name }, i) => (
